@@ -9,6 +9,10 @@ import sqlite3
 
 app = Flask(__name__)
 
+@app.get("/")
+def index():
+    return "hello, World"
+
 # Initialize database
 def init_db():
     conn = sqlite3.connect("temperature.db")
