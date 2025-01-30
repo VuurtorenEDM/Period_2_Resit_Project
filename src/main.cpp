@@ -24,7 +24,7 @@ WiFiSSLClient client;
 const int port = 443; // HTTPS port
 const char HOST_NAME[] = "https://period-2-resit-project.onrender.com"; // Your server hostname
 String HTTP_METHOD = "POST";
-String PATH_NAME = "/update-data";
+String PATH_NAME = "/add";
 
 // Functions
 // void readDHT();

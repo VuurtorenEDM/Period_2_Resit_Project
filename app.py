@@ -55,7 +55,7 @@ def get_data():
     conn.close()
 
     data = [{"id": row[0], "temperature": row[1], "timestamp": row[2]} for row in rows]
-    return render_template("data.html", data = [{"temperature":"18", "timestamp": "25/01/30"}])
+    return render_template("data.html", data = data)
 
 # if __name__ == '__main__':
 #     init_db()
