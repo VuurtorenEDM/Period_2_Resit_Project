@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Live Data
+    <!-- Sets the page title -->
+{% endblock %}
+
+
+{% block main %}
+<!-- data display -->
+    <h1>Temperature Data from LM35</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Temperature (°C)</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through the data and display each record -->
+            {% for record in data %}
+                <tr>
+                    <td>{{ record.temperature }}</td>
+                    <td>{{ record.timestamp }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

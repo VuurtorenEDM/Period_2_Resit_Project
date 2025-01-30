@@ -1,0 +1,25 @@
+body {
+    background-color: #f0f0f0;
+}
+
+h1,
+h2 {
+    color: #6a1b9a;
+}
+
+a {
+    color: #6a1b9a;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #6a1b9a;
+    color: white;
+}
+
+button:hover {
+    background-color: #9c4dcc;
+}
