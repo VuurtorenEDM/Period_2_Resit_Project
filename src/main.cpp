@@ -60,7 +60,7 @@ void processData(){
     Serial.println(outsideTemp);
     // Serial.println(insideTemp);
     Serial.println(hum);
-    String data = "{\"outsideTemp\": " + String(outsideTemp);
+    String data = "{\"outsideTemp\": " + String(outsideTemp) + "}"
                   // ", \"insideTemp\": " + String(insideTemp) +
                   // ", \"insideHumidity\": " + String(hum) + "}"
 ;
