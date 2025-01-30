@@ -10,13 +10,16 @@ import os
 
 app = Flask(__name__)
 
-@app.get("/")
+@app.route("/")
 def index():
     return "hello, World"
 
+if __name__ == "__name__":
+    app.run(debug=True)
+
 # Initialize database
 def init_db():
-    conn = sqlite3.connect("temperature.db")
+    conn = sqlite3.connect("LM35.db")
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS temperature_data (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,

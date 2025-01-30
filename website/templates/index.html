@@ -8,5 +8,55 @@
 
 
 {% block main %}
-
+    <body>
+        <!-- Navbar Section -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">LM35 Temperature Sensor</a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="data.html">Temperature Data</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    
+        <!-- Hero Section -->
+        <section class="hero bg-light text-center py-5">
+            <div class="container">
+                <h1 class="display-4">Welcome to the LM35 Temperature Monitoring System</h1>
+                <p class="lead">Track real-time temperature data using the LM35 sensor and visualize the results instantly.</p>
+            </div>
+        </section>
+    
+        <!-- Image Section -->
+        <section class="image-section text-center">
+            <img src="/images/temperature-sensor.jpg" class="img-fluid rounded shadow-lg" alt="LM35 Temperature Sensor">
+        </section>
+    
+        <!-- About Section -->
+        <section class="about py-5">
+            <div class="container text-center">
+                <h2>About the LM35 Temperature Sensor</h2>
+                <p>The LM35 is a precision temperature sensor that provides accurate readings in Celsius. It is widely used for real-time temperature monitoring in various applications, from weather stations to industrial automation.</p>
+            </div>
+        </section>
+    
+        <!-- Footer Section -->
+        <footer class="text-center py-4 bg-light">
+            <p>&copy; 2025 LM35 Temperature Monitoring System.</p>
+        </footer>
+    
+        <!-- Additional JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    </body>
 {% endblock %}
