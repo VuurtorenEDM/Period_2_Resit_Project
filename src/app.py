@@ -57,6 +57,6 @@ def get_data():
     data = [{"id": row[0], "temperature": row[1], "timestamp": row[2]} for row in rows]
     return render_template("data.html", data = [{"temperature":"18", "timestamp": "25/01/30"}])
 
-if __name__ == '__main__':
-    init_db()
-    app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 443)), debug=True)
+# if __name__ == '__main__':
+#     init_db()
+#     app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 443)), debug=True)
