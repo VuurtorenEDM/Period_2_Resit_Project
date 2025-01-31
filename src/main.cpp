@@ -146,6 +146,7 @@ void sendToServer(String data)
   {
     if (client.available()) 
     {
+      Serial.println("Test Server Response");
       String response = client.readStringUntil('\n');
       Serial.println(response);
     }
