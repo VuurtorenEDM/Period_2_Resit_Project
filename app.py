@@ -10,10 +10,23 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    fig = px.line(x=[1, 2, 3, 4, 5], y=[10, 20, 25, 30, 40], title="Plotly Graph Example")
+    conn = sqlite3.connect("LM35.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM temperature_data ORDER BY timestamp DESC LIMIT 10")
+    rows = cursor.fetchall()
+    conn.close()
+    Temperature = []
+    Timestamp = []
+    for row in rows:
+        Temperature.append(row[1])
+        Timestamp.append(row[2])
+    fig = px.line(x=Timestamp, y=Temperature, title="LM35 Data")
+    fig.update_layout(
+        xaxis_title='Timestamp',  # Custom label for the X-axis
+        yaxis_title='Temperature'   # Custom label for the Y-axis
+    )
     graph_html = fig.to_html(full_html=False)
     return render_template('index.html', graph_html=graph_html)
-
 
 if __name__ == "__name__":
     app.run(debug=True)
