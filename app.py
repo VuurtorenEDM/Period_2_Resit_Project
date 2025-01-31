@@ -5,6 +5,8 @@
 
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+import pytz
 import sqlite3
 import os
 
@@ -24,7 +26,7 @@ def init_db():
     cursor.execute('''CREATE TABLE IF NOT EXISTS temperature_data (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         temperature REAL NOT NULL,
-                        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)''')
+                        timestamp DATETIME NOT NULL)''')
     conn.commit()
     conn.close()
 
@@ -39,7 +41,7 @@ def add_temperature():
 
     conn = sqlite3.connect("LM35.db")
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO temperature_data (temperature) VALUES (?)", (temperature,))
+    cursor.execute("INSERT INTO temperature_data (temperature, timestamp) VALUES (?, ?)", (temperature, datetime.now(pytz.timezone('Europe/Amsterdam'))))
     conn.commit()
     conn.close()
 

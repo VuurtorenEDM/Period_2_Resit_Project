@@ -13,7 +13,8 @@
 // DHT dht(dhtPin, DHT11);    
 
 int hum;
-float outsideTemp; // insideTemp,
+float outsideTemp; 
+// insideTemp,
 
 //WIFI
 const char ssid[] = "fambergies";  // change your network SSID (name) iotroam ppp
@@ -22,7 +23,7 @@ const char pass[] = "Safe@bergies";   // change your network password (use for W
 WiFiSSLClient client;
 
 const int port = 443; // HTTPS port
-const char HOST_NAME[] = "https://period-2-resit-project.onrender.com"; // Your server hostname
+const char HOST_NAME[] = "period-2-resit-project.onrender.com"; // Your server hostname
 String HTTP_METHOD = "POST";
 String PATH_NAME = "/add";
 
@@ -60,10 +61,7 @@ void processData(){
     Serial.println(outsideTemp);
     // Serial.println(insideTemp);
     Serial.println(hum);
-    String data = "{\"outsideTemp\": " + String(outsideTemp) + "}"
-                  // ", \"insideTemp\": " + String(insideTemp) +
-                  // ", \"insideHumidity\": " + String(hum) + "}"
-;
+    String data = "{  \"id\": 12345,  \"temperature\": 22.5,  \"timestamp\": \"2025-01-31T14:30:00Z\"}";
     sendToServer(data);
     Serial.println("Sent data");
   }
@@ -146,7 +144,7 @@ void sendToServer(String data)
   {
     if (client.available()) 
     {
-      Serial.println("Test Server Response");
+      // Serial.println("Test Server Response");
       String response = client.readStringUntil('\n');
       Serial.println(response);
     }
