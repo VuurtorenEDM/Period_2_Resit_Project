@@ -12,3 +12,4 @@ flask_sqlalchemy
 pytz==2025.1
 datetime
 plotly
+pandas
