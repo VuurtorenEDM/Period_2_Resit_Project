@@ -29,10 +29,10 @@ String PATH_NAME = "/add";
 
 // Functions
 // void readDHT();
-void LM35read();
+float LM35read();
 void connectServer();
 void sendToServer(String data);
-void processData();
+void processData(float temperature);
 
 void setup() 
 {
@@ -43,25 +43,21 @@ void setup()
 
   // //WIFI
   connectServer();
+  delay(4000);
 }
 
 void loop() {
-  processData();
-  delay(2000);
-  // readDHT();
-  LM35read();
+  processData(LM35read());
+  delay(3000);
 }
 
-void processData(){
+void processData(float temperature){
   long lastCheckTime = 0;
   int updateInterval = 3000;
   if(millis() - lastCheckTime > updateInterval){
-    // readDHT();
     LM35read();
-    Serial.println(outsideTemp);
-    // Serial.println(insideTemp);
-    Serial.println(hum);
-    String data = "{  \"temperature\": \"" + String(outsideTemp) + "\" }";
+    Serial.println(temperature);
+    String data = "{  \"temperature\": \"" + String(temperature) + "\" }";
     sendToServer(data);
     Serial.println("Sent data");
   }
@@ -83,20 +79,20 @@ void processData(){
 //   Serial.println(testInsideTemp);
 // }
 
-void LM35read() 
+float LM35read() 
 {
+  float tempTemp = analogRead(TEMP);
   // read the input on analog pin 0:
-  outsideTemp = analogRead(TEMP);
-  if (outsideTemp == 0){
-    return;
+  if (tempTemp == 0){
+    return outsideTemp;
   }
   //Calculate Temperature from TEMP value
   //Note that we use mV for Vref
   //Vin = TEMPresult*Vref/(2^10)
   //Temp(C) = Vin/(10) = TEMPresult*Vref/(1200*10) + 2 
-  outsideTemp = outsideTemp*1100/(1200*10.0) + 2.0;
-  Serial.println(outsideTemp);
-  delay(4000);
+  outsideTemp = tempTemp*1100/(1600*10.0);
+  // Serial.println(outsideTemp);
+  return outsideTemp;
 }
 
 void connectServer() {
@@ -146,7 +142,7 @@ void sendToServer(String data)
     {
       // Serial.println("Test Server Response");
       String response = client.readStringUntil('\n');
-      Serial.println(response);
+      // Serial.println(response);
     }
   }
 
