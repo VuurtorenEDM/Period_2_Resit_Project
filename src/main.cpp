@@ -1,7 +1,5 @@
 #include <Arduino.h>
 #include <Adafruit_Sensor.h>
-// #include <DHT.h>
-// #include <DHT_U.h>
 #include <Math.h>
 #include <Wire.h>
 // WIFI
@@ -9,12 +7,10 @@
 #include <WiFiSSLClient.h>
 
 #define TEMP A0 // LM35 pin
-
-// DHT dht(dhtPin, DHT11);    
+    
 
 int hum;
 float outsideTemp; 
-// insideTemp,
 
 //WIFI
 const char ssid[] = "fambergies";  // change your network SSID (name) iotroam ppp
@@ -28,7 +24,6 @@ String HTTP_METHOD = "POST";
 String PATH_NAME = "/add";
 
 // Functions
-// void readDHT();
 float LM35read();
 void connectServer();
 void sendToServer(String data);
@@ -37,11 +32,10 @@ void processData(float temperature);
 void setup() 
 {
   Serial.begin(9600);
-  // dht.begin();
   // Switch to Internal 1.1V Reference
   analogReference(AR_INTERNAL);
 
-  // //WIFI
+  // WIFI
   connectServer();
   delay(4000);
 }
@@ -52,32 +46,17 @@ void loop() {
 }
 
 void processData(float temperature){
-  long lastCheckTime = 0;
-  int updateInterval = 3000;
-  if(millis() - lastCheckTime > updateInterval){
-    LM35read();
+   long lastCheckTime = 0;
+   int updateInterval = 3000;
+   if(millis() - lastCheckTime > updateInterval){
     Serial.println(temperature);
     String data = "{  \"temperature\": \"" + String(temperature) + "\" }";
     sendToServer(data);
     Serial.println("Sent data");
-  }
-  lastCheckTime = millis();
+   }
+   lastCheckTime = millis();
 }
 
-//Reads the DHT11 sensor
-// void readDHT(){
-//   int testHum = dht.readHumidity();   //rads data from sensor
-//   double testInsideTemp = dht.readTemperature() - 2.0;
-//   if(!isnan(testHum) && !isnan(testInsideTemp)){  //isnan checks if is not a number(error code for dht is not a number)
-//     //valid readings
-//     hum = testHum;
-//     insideTemp = testInsideTemp;
-//   }else{
-//     Serial.println("Error");
-//   }
-//   Serial.println(testHum);
-//   Serial.println(testInsideTemp);
-// }
 
 float LM35read() 
 {
@@ -91,7 +70,6 @@ float LM35read()
   //Vin = TEMPresult*Vref/(2^10)
   //Temp(C) = Vin/(10) = TEMPresult*Vref/(1200*10) + 2 
   outsideTemp = tempTemp*1100/(1600*10.0);
-  // Serial.println(outsideTemp);
   return outsideTemp;
 }
 

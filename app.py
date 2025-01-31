@@ -9,12 +9,16 @@ from datetime import datetime
 import pytz
 import sqlite3
 import os
+import plotly.express as px
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    fig = px.line(x=[1, 2, 3, 4, 5], y=[10, 20, 25, 30, 40], title="Plotly Graph Example")
+    graph_html = fig.to_html(full_html=False)
+    return render_template('index.html', graph_html=graph_html)
+
 
 if __name__ == "__name__":
     app.run(debug=True)
@@ -62,3 +66,4 @@ def get_data():
 # if __name__ == '__main__':
 #     init_db()
 #     app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 443)), debug=True)
+
