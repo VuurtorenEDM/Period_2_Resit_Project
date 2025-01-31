@@ -18,11 +18,10 @@
             </div>
         </section>
     
-        <!-- Image Section -->
-        <section class="image-section text-center">
-            <img src="/images/temperature-sensor.jpg" class="img-fluid rounded shadow-lg" alt="LM35 Temperature Sensor">
-        </section>
+        
+        {{ graph_html | safe }}
     
+
         <!-- About Section -->
         <section class="about py-5">
             <div class="container text-center">

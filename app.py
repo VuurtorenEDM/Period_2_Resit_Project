@@ -1,8 +1,3 @@
-##take data in from lm35 sensor
-##push to db
-##comm data out
-##redirect pages (can use homepage as reference)
-
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
