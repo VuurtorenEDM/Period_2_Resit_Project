@@ -61,7 +61,7 @@ void processData(){
     Serial.println(outsideTemp);
     // Serial.println(insideTemp);
     Serial.println(hum);
-    String data = "{  \"id\": 12345,  \"temperature\": 22.5,  \"timestamp\": \"2025-01-31T14:30:00Z\"}";
+    String data = "{  \"temperature\": \"" + String(outsideTemp) + "\" }";
     sendToServer(data);
     Serial.println("Sent data");
   }
