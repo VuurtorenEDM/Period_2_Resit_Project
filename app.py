@@ -41,7 +41,7 @@ def add_temperature():
 
     conn = sqlite3.connect("LM35.db")
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO temperature_data (temperature, timestamp) VALUES (?, ?)", (temperature, datetime.now(pytz.timezone('Europe/Amsterdam'))))
+    cursor.execute("INSERT INTO temperature_data (temperature, timestamp) VALUES (?, ?)", (temperature, datetime.now(pytz.timezone('Europe/Amsterdam')).strftime('%Y-%m-%d %H:%M:%S')))
     conn.commit()
     conn.close()
 
